@@ -3,11 +3,35 @@
 
 # Question 1 (Naked Twins)
 Q: How do we use constraint propagation to solve the naked twins problem?  
-A: *Student should provide answer here*
+A: Constraint propagation is the process of determining how the
+constraints and the possible values of one variable affect the possible values of other variables. It is an important form of “least-commitment”
+reasoning(referenced from [here](http://ai.stanford.edu/~latombe/cs121/2011/slides/H-const-prop.pdf)).
+
+Naked Twins is a strategy to exclude possibilities in a group. As we can see, in the unit 3[A-I], both F3 and I3 are
+permitted with values of 2 and 3, which excludes possibilities that 2 and 3 could occur in other positions in this 
+unit. In other words, it's not possible that 2 or 3 will occur in D3 or E3.
+
+![Naked Twins Example](images/sudoku-naked-twins.png)
+
+###### Implementation
+
+1. Iterate through all the units(3x3 or 1x9 or 9x1), which provides local
+constraints thus helps narrow possibilities.
+2. Find possible result strings that occur more than once('23' in the above example). Twins will occur twice, triples
+will occur three times, etc.
+3. Once the twins are identified, iterate through all the other boxes in the same unit, 
+remove the possibility(remove 2,3 from all boxes in 3[A-I] except F3 and I3).
+
+###### Usage
+
+This strategy can be used in conjunction with ```eliminate```
+and ```only_choice```a as part of the iteration.
+
 
 # Question 2 (Diagonal Sudoku)
 Q: How do we use constraint propagation to solve the diagonal sudoku problem?  
-A: *Student should provide answer here*
+A: Diagonal Sudoku can be considered a regular sudoku with two more units - two main diagonals. We can solve it by 
+adding these two new units to existing unitlist.
 
 ### Install
 
