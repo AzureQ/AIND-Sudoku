@@ -173,7 +173,6 @@ def solve(grid):
         The dictionary representation of the final sudoku grid. False if no solution exists.
     """
     values = grid_values(grid)
-    values = reduce_puzzle(values)
     values = search(values)
     return values
 
